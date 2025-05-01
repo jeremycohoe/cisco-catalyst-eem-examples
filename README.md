@@ -2,6 +2,7 @@
 
 # Generate a syslog message at reboot that includes the software version
 
+```
 conf t
 event manager applet log_ios_version_boot
  event syslog pattern "SYS-5-RESTART"
@@ -9,7 +10,13 @@ event manager applet log_ios_version_boot
  action 2.0 cli command "show version | include ^Cisco IOS XE Software"
  action 3.0 syslog msg "Version: $_cli_result"
 end
+```
 
+Log message may look similar to:
+
+```
+*May  1 00:09:43.102: %HA_EM-6-LOG: log_ios_version_boot: Version: Cisco IOS XE Software, Version 17.15.01
+```
 
 
 # Set POE power off daily
