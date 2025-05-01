@@ -1,5 +1,17 @@
 # cisco-catalyst-eem-examples
 
+# Generate a syslog message at reboot that includes the software version
+
+conf t
+event manager applet log_ios_version_boot
+ event syslog pattern "SYS-5-RESTART"
+ action 1.0 cli command "enable"
+ action 2.0 cli command "show version | include ^Cisco IOS XE Software"
+ action 3.0 syslog msg "Version: $_cli_result"
+end
+
+
+
 # Set POE power off daily
 
 ```
